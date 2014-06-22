@@ -75,11 +75,11 @@ public class Alumnos {
        
         dire.setCalle(calle);
         dire.setNumero(numero);
-        obj.setName(nombre);
+        obj.setNombre(nombre);
         obj.setApellido(apellido);
         obj.setDni(dni);
         obj.setDireccion(dire);
-        obj.setLegajo(new Legajo("empty") );
+        obj.setLegajo(new Legajo() );
         container.persistIfNotAlready(obj);
         return obj;
     }

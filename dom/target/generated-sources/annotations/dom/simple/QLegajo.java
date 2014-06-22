@@ -27,24 +27,20 @@ public class QLegajo extends org.datanucleus.api.jdo.query.PersistableExpression
         return new QLegajo(Legajo.class, name, ExpressionType.VARIABLE);
     }
 
-    public final dom.simple.QTarjeta tarjeta;
+    public final CollectionExpression listaDocumentos;
+    public final ObjectExpression<org.apache.isis.applib.DomainObjectContainer> container;
 
     public QLegajo(PersistableExpression parent, String name, int depth)
     {
         super(parent, name);
-        if (depth > 0)
-        {
-            this.tarjeta = new dom.simple.QTarjeta(this, "tarjeta", depth-1);
-        }
-        else
-        {
-            this.tarjeta = null;
-        }
+        this.listaDocumentos = new CollectionExpressionImpl(this, "listaDocumentos");
+        this.container = new ObjectExpressionImpl<org.apache.isis.applib.DomainObjectContainer>(this, "container");
     }
 
     public QLegajo(Class type, String name, org.datanucleus.api.jdo.query.ExpressionType exprType)
     {
         super(type, name, exprType);
-        this.tarjeta = new dom.simple.QTarjeta(this, "tarjeta", 5);
+        this.listaDocumentos = new CollectionExpressionImpl(this, "listaDocumentos");
+        this.container = new ObjectExpressionImpl<org.apache.isis.applib.DomainObjectContainer>(this, "container");
     }
 }

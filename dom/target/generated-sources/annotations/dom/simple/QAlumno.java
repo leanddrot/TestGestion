@@ -27,7 +27,7 @@ public class QAlumno extends org.datanucleus.api.jdo.query.PersistableExpression
         return new QAlumno(Alumno.class, name, ExpressionType.VARIABLE);
     }
 
-    public final StringExpression name;
+    public final StringExpression nombre;
     public final StringExpression apellido;
     public final NumericExpression<Integer> dni;
     public final dom.simple.QDireccion direccion;
@@ -37,7 +37,7 @@ public class QAlumno extends org.datanucleus.api.jdo.query.PersistableExpression
     public QAlumno(PersistableExpression parent, String name, int depth)
     {
         super(parent, name);
-        this.name = new StringExpressionImpl(this, "name");
+        this.nombre = new StringExpressionImpl(this, "nombre");
         this.apellido = new StringExpressionImpl(this, "apellido");
         this.dni = new NumericExpressionImpl<Integer>(this, "dni");
         if (depth > 0)
@@ -62,7 +62,7 @@ public class QAlumno extends org.datanucleus.api.jdo.query.PersistableExpression
     public QAlumno(Class type, String name, org.datanucleus.api.jdo.query.ExpressionType exprType)
     {
         super(type, name, exprType);
-        this.name = new StringExpressionImpl(this, "name");
+        this.nombre = new StringExpressionImpl(this, "nombre");
         this.apellido = new StringExpressionImpl(this, "apellido");
         this.dni = new NumericExpressionImpl<Integer>(this, "dni");
         this.direccion = new dom.simple.QDireccion(this, "direccion", 5);

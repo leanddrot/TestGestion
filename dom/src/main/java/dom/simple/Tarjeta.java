@@ -4,56 +4,65 @@ import javax.jdo.annotations.Column;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
+import org.apache.isis.applib.DomainObjectContainer;
+import org.apache.isis.applib.annotation.MaxLength;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.MultiLine;
+import org.apache.isis.applib.annotation.Named;
 import org.apache.isis.applib.annotation.Title;
-
+import org.apache.isis.applib.util.ObjectContracts;
 
 @PersistenceCapable
-public class Tarjeta {
+public class Tarjeta implements Comparable<Tarjeta>{
 	
-	
-	
-	// {{ Nombre (property)
-	private String nombre;
-	
+	// {{ TituloDocumento (property)
+	private String tituloTarjeta;
+
+	@Title
 	@Persistent
 	@MemberOrder(sequence = "1")
-	@Column(allowsNull = "true", name = "nombre_t")
-	@Title
-	public String getNombre() {
-		return nombre;
+	@Column(allowsNull = "true")
+	public String getTituloTarjeta() {
+		return tituloTarjeta;
 	}
 
-	public void setNombre(final String nombre) {
-		this.nombre = nombre;
+	public void setTituloTarjeta(final String TituloTarjeta) {
+		this.tituloTarjeta = TituloTarjeta;
 	}
 	// }}
 
 
-	// {{ Cuerpo (property)
-	private String cuerpo;
+	
+	// {{ TextoDocumento (property)
+	
+	private String textoTarjeta;
 
 	@Persistent
 	@MemberOrder(sequence = "1.1")
-	@Column(allowsNull = "true", name = "cuerpo_t")
-	public String getCuerpo() {
-		return cuerpo;
+	@Column(allowsNull = "true", length = 2048)
+	@MaxLength(2048)
+    @MultiLine
+	public String getTextoTarjeta() {
+		return textoTarjeta;
 	}
 
-	public void setCuerpo(final String cuerpo) {
-		this.cuerpo = cuerpo;
+	public void setTextoTarjeta(final String textoTarjeta) {
+		this.textoTarjeta = textoTarjeta;
 	}
 	// }}
 
-	public Tarjeta(String tipo) {
-		if (tipo=="empty"){
-			setNombre("Nombre_Tarjeta");
-			setCuerpo("Texto del cuerpo");
-		}
-	}
+	
+	 // //////////////////////////////////////
+    // Injected services
+    // //////////////////////////////////////
 
-	public Tarjeta() {
-		// TODO Auto-generated constructor stub
+    @javax.inject.Inject 
+    DomainObjectContainer container;
+
+	@Override
+	public int compareTo(Tarjeta other) {
+		return ObjectContracts.compare(this, other, "tituloTarjeta");
 	}
+	
 
 }

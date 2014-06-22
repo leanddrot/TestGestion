@@ -27,20 +27,23 @@ public class QTarjeta extends org.datanucleus.api.jdo.query.PersistableExpressio
         return new QTarjeta(Tarjeta.class, name, ExpressionType.VARIABLE);
     }
 
-    public final StringExpression nombre;
-    public final StringExpression cuerpo;
+    public final StringExpression tituloTarjeta;
+    public final StringExpression textoTarjeta;
+    public final ObjectExpression<org.apache.isis.applib.DomainObjectContainer> container;
 
     public QTarjeta(PersistableExpression parent, String name, int depth)
     {
         super(parent, name);
-        this.nombre = new StringExpressionImpl(this, "nombre");
-        this.cuerpo = new StringExpressionImpl(this, "cuerpo");
+        this.tituloTarjeta = new StringExpressionImpl(this, "tituloTarjeta");
+        this.textoTarjeta = new StringExpressionImpl(this, "textoTarjeta");
+        this.container = new ObjectExpressionImpl<org.apache.isis.applib.DomainObjectContainer>(this, "container");
     }
 
     public QTarjeta(Class type, String name, org.datanucleus.api.jdo.query.ExpressionType exprType)
     {
         super(type, name, exprType);
-        this.nombre = new StringExpressionImpl(this, "nombre");
-        this.cuerpo = new StringExpressionImpl(this, "cuerpo");
+        this.tituloTarjeta = new StringExpressionImpl(this, "tituloTarjeta");
+        this.textoTarjeta = new StringExpressionImpl(this, "textoTarjeta");
+        this.container = new ObjectExpressionImpl<org.apache.isis.applib.DomainObjectContainer>(this, "container");
     }
 }

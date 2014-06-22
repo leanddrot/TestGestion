@@ -50,16 +50,16 @@ public class Alumno implements Comparable<Alumno> {
     // Name (property)
     // //////////////////////////////////////
     
-    private String name;
+    private String nombre;
 
     @javax.jdo.annotations.Column(allowsNull="false")
     @MemberOrder(sequence="1.2")
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public void setNombre(final String name) {
+        this.nombre = name;
     }
     
     // {{ Apellido (property)
@@ -140,7 +140,7 @@ public class Alumno implements Comparable<Alumno> {
 
     
     public String title() {
-		return apellido + ", " + name;
+		return apellido + ", " + nombre;
 	}
     
     
