@@ -113,6 +113,7 @@ public class Alumno implements Comparable<Alumno> {
 	// {{ Legajo (property)
 	private Legajo legajo;
 
+	@Bookmarkable
 	@MemberOrder(sequence = "1.8")
 	@Column(allowsNull = "true", name = "LEGAJO_ID")
 	public Legajo getLegajo() {

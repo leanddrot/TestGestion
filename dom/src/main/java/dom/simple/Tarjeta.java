@@ -15,7 +15,7 @@ import org.apache.isis.applib.util.ObjectContracts;
 @PersistenceCapable
 public class Tarjeta implements Comparable<Tarjeta>{
 	
-	// {{ TituloDocumento (property)
+	// {{ TituloTarjeta (property)
 	private String tituloTarjeta;
 
 	@Title
@@ -33,7 +33,7 @@ public class Tarjeta implements Comparable<Tarjeta>{
 
 
 	
-	// {{ TextoDocumento (property)
+	// {{ TextoTarjeta (property)
 	
 	private String textoTarjeta;
 
@@ -50,6 +50,11 @@ public class Tarjeta implements Comparable<Tarjeta>{
 		this.textoTarjeta = textoTarjeta;
 	}
 	// }}
+	
+	
+	
+	
+	
 
 	
 	 // //////////////////////////////////////
@@ -63,6 +68,7 @@ public class Tarjeta implements Comparable<Tarjeta>{
 	public int compareTo(Tarjeta other) {
 		return ObjectContracts.compare(this, other, "tituloTarjeta");
 	}
+	
 	
 
 }

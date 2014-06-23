@@ -6,16 +6,14 @@ import java.util.TreeSet;
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.Element;
 import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Hidden;
+import org.apache.isis.applib.annotation.MaxLength;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.MultiLine;
 import org.apache.isis.applib.annotation.Named;
 import org.apache.isis.applib.annotation.Render;
 import org.apache.isis.applib.annotation.Render.Type;
-
-import com.google.common.io.Resources;
 
 
 
@@ -29,12 +27,13 @@ public class Legajo {
 	@Named("Nueva Tarjeta")
 	public Tarjeta create (
 			final @Named("Nombre") String nombre,
-			final @Named("Cuerpo") String cuerpo){
+			final @MaxLength(2048)
+		    	  @MultiLine 
+		    	  @Named("Cuerpo") String cuerpo){
 		final Tarjeta obj = new Tarjeta();
 		obj.setTituloTarjeta(nombre);;
 		obj.setTextoTarjeta(cuerpo);
-		//container.persistIfNotAlready(obj);
-		add(obj);
+		addTarjeta(obj);
 		return obj;
 	}
 		
@@ -43,7 +42,7 @@ public class Legajo {
 	}
 	
 	public String title(){
-		return "Legajo";
+		return "Legajo de " + getPropietario() ;
 	}
 	
 	
@@ -52,28 +51,50 @@ public class Legajo {
 	// {{ ListaDocumentos (Collection)
 	
 	@Element(column = "DOCUM", dependent = "false")
-	
-	private SortedSet<Tarjeta> listaDocumentos = new TreeSet<Tarjeta>();
+	private SortedSet<Tarjeta> listaTarjetas = new TreeSet<Tarjeta>();
 	@Render(Type.EAGERLY)
-	@MemberOrder(sequence = "3")
+	@MemberOrder(sequence = "1")
 	public SortedSet<Tarjeta> getListaDocumentos() {
-		return listaDocumentos;
+		return listaTarjetas;
 	}
 
-	public void setListaDocumentos(final SortedSet<Tarjeta> listaDocumentos) {
-		this.listaDocumentos = listaDocumentos;
+	public void setListaDocumentos(final SortedSet<Tarjeta> listaTarjetas) {
+		this.listaTarjetas = listaTarjetas;
 	}
 	// }}
+	
+	
+	// {{ Propietario (property)
+	private String propietario;
+
+	@MemberOrder(sequence = "1")
+	@Hidden
+	@Column(allowsNull = "true", name = "PROPIETARIO")
+	public String getPropietario() {
+		return propietario;
+	}
+
+	public void setPropietario(final String propietario) {
+		this.propietario = propietario;
+	}
+	// }}
+
+
+	
+	
+	
+	
+	
+	
 			
 	// ///////////////////////////////////////
-	//  Action Add
+	//  Action AddTarjeta
 	// ///////////////////////////////////////
 	@Hidden
-	public void add(Tarjeta documento){
-		this.listaDocumentos.add(documento);
+	public void addTarjeta(Tarjeta tarjeta){
+		this.listaTarjetas.add(tarjeta);
 		;	
 	}
-	
 	
 
     // //////////////////////////////////////
