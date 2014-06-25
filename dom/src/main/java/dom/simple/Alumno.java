@@ -44,7 +44,7 @@ import org.apache.isis.applib.util.ObjectContracts;
         column="version")
 @ObjectType("ALUMNO")
 @Bookmarkable
-public class Alumno implements Comparable<Alumno> {
+public class Alumno extends Persona implements Comparable<Alumno> {
 
     // //////////////////////////////////////
     // Name (property)

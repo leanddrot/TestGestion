@@ -3,7 +3,7 @@ package dom.simple;
 import org.datanucleus.query.typesafe.*;
 import org.datanucleus.api.jdo.query.*;
 
-public class QAlumno extends org.datanucleus.api.jdo.query.PersistableExpressionImpl<Alumno> implements PersistableExpression<Alumno>
+public class QAlumno extends dom.simple.QPersona
 {
     public static final QAlumno jdoCandidate = candidate("this");
 
@@ -36,7 +36,7 @@ public class QAlumno extends org.datanucleus.api.jdo.query.PersistableExpression
 
     public QAlumno(PersistableExpression parent, String name, int depth)
     {
-        super(parent, name);
+        super(parent, name, depth);
         this.nombre = new StringExpressionImpl(this, "nombre");
         this.apellido = new StringExpressionImpl(this, "apellido");
         this.dni = new NumericExpressionImpl<Integer>(this, "dni");

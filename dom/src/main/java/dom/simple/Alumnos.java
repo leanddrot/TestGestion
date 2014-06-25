@@ -32,6 +32,8 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Named;
 import org.apache.isis.applib.annotation.Programmatic;
 
+import dom.simple.Persona.genero;
+
 public class Alumnos {
 
 
@@ -67,6 +69,7 @@ public class Alumnos {
     public Alumno create(
             final @Named("Nombre") String nombre,
             final @Named("Apellido") String apellido,
+            final @Named("Sexo") genero sexo,
             final @Named("DNI") int dni,
             final @Named("Calle") String calle,
             final @Named("Numero") int numero) {
@@ -78,6 +81,7 @@ public class Alumnos {
         dire.setCalle(calle);
         dire.setNumero(numero);
         legajo.setPropietario(propietario);
+        obj.setSexo(sexo);
         obj.setNombre(nombre);
         obj.setApellido(apellido);
         obj.setDni(dni);
