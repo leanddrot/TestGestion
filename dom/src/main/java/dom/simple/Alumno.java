@@ -76,6 +76,7 @@ public class Alumno extends Persona implements Comparable<Alumno> {
 	}
 	// }}
 
+	
 	// {{ DNI (property)
 	private int dni;
 
