@@ -1,4 +1,4 @@
 TestGestion
 ===========
 
-Pruebas de ISIS basadas en el arquetipo "Simple"
+Pruebas de ISIS basadas en el  arquetipo "Simple"
